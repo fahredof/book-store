@@ -5,19 +5,30 @@ import {bookstoreServiceContext} from "../bookstore-service-context"
 import {connect} from "react-redux";
 import * as actions from "../../action";
 import {compose} from "../../utils"
+import Spinner from "../spinner";
+import ErrorIndicator from "../error-indicator";
 
 const BookList = (props) => {
 
     const context = useContext(bookstoreServiceContext);
-    const {books} = props;
-    const {booksLoaded} = props;
+    const {books, loading, error} = props;
+    const {booksLoaded, booksRequested, booksError} = props;
 
     useEffect(() => {
-        booksLoaded(context.getBooks());
-    }, [booksLoaded, context]);
+        booksRequested();
 
-    if (books.length === 0) {
-        return null;
+        context.getBooks()
+            .then((data) => booksLoaded(data))
+            .catch((error) => booksError(error))
+
+    }, [booksRequested, booksLoaded, booksError, context]);
+
+    if (loading) {
+        return <Spinner/>;
+    }
+
+    if (error) {
+        return <ErrorIndicator/>
     }
 
     return (
@@ -35,9 +46,11 @@ const BookList = (props) => {
     );
 };
 
-const mapStateToProps = ({books}) => {
+const mapStateToProps = ({books, loading, error}) => {
     return {
-        books
+        books,
+        loading,
+        error
     }
 };
 

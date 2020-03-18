@@ -8,7 +8,6 @@ import Footer from "../footer";
 import HomePage from "../pages/home-page";
 import CartPage from "../pages/cart-page/cart-page";
 
-
 const App = () => {
     return (
         <div className="app container-fluid">
