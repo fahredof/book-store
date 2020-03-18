@@ -1,0 +1,26 @@
+.book-list {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+
+@media (max-width: 749px) {
+    .book-list {
+        justify-content: center;
+    }
+}
+
+@media (min-width: 750px) and (max-width: 1109px){
+    .book-list {
+        justify-content: space-between;
+    }
+}
+
+
+
+
+
+
+

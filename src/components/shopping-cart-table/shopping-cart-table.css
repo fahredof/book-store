@@ -1,0 +1,21 @@
+.shopping-cart-table {
+    margin: 10px;
+}
+
+.shopping-cart-table .count {
+    width: 40px;
+}
+
+.shopping-cart-table img {
+    width: 20px;
+}
+
+.shopping-cart-table .delete-button {
+    padding: 0;
+}
+
+.shopping-cart-table .total {
+    text-align: right;
+    font-weight: bold;
+    font-size: 18px;
+}

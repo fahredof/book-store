@@ -1,0 +1,11 @@
+.img-error {
+    width: 30%;
+    height: 40%;
+}
+
+@media (min-width: 500px) and (max-width: 1000px){
+    .img-error {
+        width: 70%;
+        height: 80%;
+    }
+}
