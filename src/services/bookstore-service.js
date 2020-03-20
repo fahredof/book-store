@@ -47,9 +47,9 @@ export default class BookstoreService {
     getBooks = async () => {
         return new Promise((resolve, reject) => {
             setTimeout(() => {
-                //resolve(this.data)
-                reject(new Error("Something bad happened"))
-            }, 2000)
+                resolve(this.data);
+                //reject(new Error("fdff"));
+            }, 500)
         })
     }
 }

@@ -3,7 +3,7 @@ import "./header.css";
 import {Link} from "react-router-dom";
 import Cart from "./svg/cart.svg"
 
-const Header = () => {
+const Header = ({totalCost}) => {
     return (
         <div className="header">
             <nav className="navbar navbar-dark bg-primary">
@@ -23,7 +23,7 @@ const Header = () => {
                             </Link>
                         </li>
                         <li className="total-cost">
-                            €200
+                            €{totalCost}
                         </li>
                     </div>
                 </ul>

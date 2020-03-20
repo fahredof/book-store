@@ -2,7 +2,41 @@ import React from "react";
 import "./shopping-cart-table.css";
 import Trash from "./svg/trash.svg"
 
-const ShoppingCartTable = () => {
+import {bookDeletedInCart, bookChangeInCart} from "../../action";
+
+import {connect} from "react-redux";
+
+import compose from "../../utils/compose";
+
+const ShoppingCartTable = ({items, total, onChange, onDelete}) => {
+    const renderRow = (item, idx) => {
+        const {id, title, count, total} = item;
+        return (
+            <tr key={idx}>
+                <th>{idx + 1}</th>
+                <td>{title}</td>
+                <td>
+                    <input
+                        className="count"
+                        type="number"
+                        defaultValue={count}
+                        onChange={(event) => onChange(id, idx, event.target.value)}
+                    />
+                </td>
+                <td>{total}</td>
+                <td>
+                    <button
+                        type="button"
+                        className="delete-button btn btn-secondary"
+                        onClick={() => onDelete(idx)}
+                    >
+                        <img src={Trash} alt="delete"/>
+                    </button>
+                </td>
+            </tr>
+        )
+    };
+
     return (
         <div className="shopping-cart-table">
             <h2>Your Order</h2>
@@ -17,30 +51,30 @@ const ShoppingCartTable = () => {
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <th>1</th>
-                    <td>PICTORIAL WEAVINGS</td>
-                    <td>
-                        <input
-                            className="count"
-                            type="number"
-                        />
-                    </td>
-                    <td>€250.88</td>
-                    <td>
-                        <button
-                            type="button"
-                            className="delete-button btn btn-secondary"
-                        >
-                            <img src={Trash} alt="delete"/>
-                        </button>
-                    </td>
-                </tr>
+                {
+                    items.map(renderRow)
+                }
                 </tbody>
             </table>
-            <div className="total">Total cost 200EUR</div>
+            <div className="total">Total cost {total}EUR</div>
         </div>
     );
 };
 
-export default ShoppingCartTable;
+const mapStateToProps = ({cartItems, orderTotal}) => {
+    return {
+        items: cartItems,
+        total: orderTotal
+    }
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        onChange: (idBook, idCart, quantity) => dispatch(bookChangeInCart(idBook, idCart, quantity)),
+        onDelete: (id) => dispatch(bookDeletedInCart(id)),
+    }
+};
+
+export default compose(
+    connect(mapStateToProps, mapDispatchToProps)
+)(ShoppingCartTable);

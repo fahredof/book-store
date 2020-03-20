@@ -1,10 +1,10 @@
 import React, {Fragment} from "react";
-import BookList from "../../book-list";
+import BookListContainer from "../../../containers/book-list-container";
 
 const HomePage = () => {
     return (
         <Fragment>
-            <BookList/>
+            <BookListContainer/>
         </Fragment>
     );
 };
