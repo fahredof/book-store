@@ -14,7 +14,7 @@ const App = () => {
             <HeaderContainer/>
             <Switch>
                 <Route
-                    path="/"
+                    path="/book-store/"
                     component={HomePage}
                     exact
                 />
