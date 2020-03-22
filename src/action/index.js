@@ -26,10 +26,10 @@ const bookAddedToCart = (bookId, quantity) => {
     }
 };
 
-const bookDeletedInCart = (cartId) => {
+const bookDeletedInCart = (idCart) => {
     return {
         type: "BOOK_DELETED_IN_CART",
-        payload: cartId
+        payload: idCart
     }
 };
 

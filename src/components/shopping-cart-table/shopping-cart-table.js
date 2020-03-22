@@ -56,12 +56,16 @@ const ShoppingCartTable = ({items, total, onChange, onDelete}) => {
                 }
                 </tbody>
             </table>
-            <div className="total">Total cost {total}EUR</div>
+            {
+                total ?
+                    <div className="total">Total cost {total}EUR</div>
+                    : null
+            }
         </div>
     );
 };
 
-const mapStateToProps = ({cartItems, orderTotal}) => {
+const mapStateToProps = ({shoppingCart: {cartItems, orderTotal}}) => {
     return {
         items: cartItems,
         total: orderTotal
@@ -71,7 +75,7 @@ const mapStateToProps = ({cartItems, orderTotal}) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         onChange: (idBook, idCart, quantity) => dispatch(bookChangeInCart(idBook, idCart, quantity)),
-        onDelete: (id) => dispatch(bookDeletedInCart(id)),
+        onDelete: (idCart) => dispatch(bookDeletedInCart(idCart)),
     }
 };
 

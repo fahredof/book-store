@@ -9,7 +9,7 @@ const HeaderContainer = ({orderTotal}) => {
   )
 };
 
-const mapStateToProps = ({orderTotal}) => {
+const mapStateToProps = ({shoppingCart : {orderTotal}}) => {
   return {
       orderTotal
   }

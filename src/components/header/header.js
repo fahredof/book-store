@@ -22,9 +22,13 @@ const Header = ({totalCost}) => {
                                 <img src={Cart} alt="cart"/>
                             </Link>
                         </li>
-                        <li className="total-cost">
-                            €{totalCost}
-                        </li>
+                        {
+                            totalCost ?
+                                <li className="total-cost">
+                                    €{totalCost}
+                                </li>
+                                : null
+                        }
                     </div>
                 </ul>
             </nav>
